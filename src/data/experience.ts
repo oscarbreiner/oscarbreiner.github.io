@@ -14,7 +14,7 @@ export const experience: ExperienceEntry[] = [
     company: 'BMW Group',
     location: 'Munich, Germany',
     start: 'Sep 2024',
-    end: 'Present',
+    end: 'May 2026',
     bullets: [
       'Improved performance of multimodal ML systems.',
       'Designed MLOps infrastructure to boost engineering productivity and reduce compute and operational costs.',
