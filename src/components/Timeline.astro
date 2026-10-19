@@ -3,6 +3,7 @@ type TimelineItem = {
   title: string;
   subtitle: string;
   meta: string;
+  location?: string;
   bullets: string[];
   chips?: string[];
 };
@@ -42,7 +43,14 @@ const { variant = 'experience' } = Astro.props as Props;
             {item.meta}
           </p>
         </header>
-        <p class="mt-2 text-sm text-muted">{item.subtitle}</p>
+        {variant === 'education' ? (
+          <>
+            <p class="mt-2 text-base font-semibold text-ink/80">{item.subtitle}</p>
+            {item.location && <p class="mt-0.5 text-sm text-muted">{item.location}</p>}
+          </>
+        ) : (
+          <p class="mt-2 text-sm text-muted">{item.subtitle}</p>
+        )}
 
         <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted">
           {item.bullets.map((bullet) => (

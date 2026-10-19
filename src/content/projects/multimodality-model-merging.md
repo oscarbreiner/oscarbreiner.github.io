@@ -4,6 +4,7 @@ description: "Multimodal model merging via geometric alignment, weight precondit
 date: 2025-12-10
 featured: true
 tags: ["Multimodal Learning", "Computer Vision"]
+supervisors: ["Prof. Daniel Cremers"]
 image: "/images/projects/model_merging.jpg"
 links:
   # github: "https://github.com/oscarbreiner"

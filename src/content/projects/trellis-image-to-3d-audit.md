@@ -1,9 +1,10 @@
 ---
-title: "Image-to-3D Generation: TRELLIS Audit"
+title: "Image-to-3D Generation: A Systematic TRELLIS Audit"
 description: "Auditing TRELLIS-style image-to-3D generation during a research stay at Oxford, in a collaboration between the PIXL Lab (Oxford) and the 3D AI Lab (TUM)."
 date: 2026-07-01
 featured: true
 tags: ["Computer Vision", "3D Vision"]
+supervisors: ["Prof. Ronald Clark (Oxford)", "Prof. Angela Dai (TUM)"]
 image: "/images/projects/trellis_pipeline.jpg"
 imageFit: "contain"
 imageBg: "#f8f8fc"

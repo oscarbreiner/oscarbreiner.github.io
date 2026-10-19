@@ -4,6 +4,7 @@ description: "Surveyed the evolution of Vision Transformers and key design strat
 date: 2024-08-01
 featured: true
 tags: ["Computer Vision"]
+supervisors: ["Prof. Stephan Günnemann"]
 image: "/images/projects/vit.webp"
 imageFit: "contain"
 imageBg: "#fdfdfd"

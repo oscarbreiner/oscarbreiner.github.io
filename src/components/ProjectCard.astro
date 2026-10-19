@@ -7,13 +7,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, tags, image, imageFit, imageBg, badges, status, date } = project.data;
+const { title, description, tags, image, imageFit, imageBg, badges, status, supervisors, date } = project.data;
 const links = project.data.links ?? {};
 const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
 ---
 
 <article
-  class="project-card surface-card group row-span-5 grid cursor-pointer grid-rows-subgrid gap-0 overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-card"
+  class="project-card surface-card group row-span-6 grid cursor-pointer grid-rows-subgrid gap-0 overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-card"
   data-project-card
   data-project-url={withBase(`/projects/${project.slug}`)}
   data-tags={tagDataset}
@@ -36,6 +36,9 @@ const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
   {/* Each block below is a row of the parent grid (subgrid), so titles, descriptions, tags, and links line up across a row of cards. */}
   <div class="px-5 pt-5 sm:px-6 sm:pt-6">
     <h3 class="font-display text-2xl leading-tight text-ink">{title}</h3>
+  </div>
+
+  <div class="px-5 sm:px-6">
     {(badges.length > 0 || status) && (
       <div class="mt-3 flex flex-wrap gap-2">
         {badges.map((badge) => (
@@ -46,6 +49,7 @@ const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
         )}
       </div>
     )}
+    {supervisors.length > 0 && <p class="mt-2 text-xs text-muted">{supervisors.length > 1 ? 'Supervisors' : 'Supervisor'}: {supervisors.join(', ')}</p>}
   </div>
 
   <p class="mt-2 px-5 text-sm leading-6 text-muted sm:px-6" data-project-description>{description}</p>

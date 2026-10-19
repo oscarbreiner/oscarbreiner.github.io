@@ -4,6 +4,7 @@ description: "Bachelor’s Thesis at the lab of Prof. Stephan Günnemann (TUM), 
 date: 2024-03-15
 featured: true
 tags: ["Radar", "Space"]
+supervisors: ["Prof. Stephan Günnemann"]
 image: "/images/projects/space_debris.jpeg"
 links:
   github: "https://github.com/oscarbreiner/Deep-Learning-Based-Space-Debris-Classification.git"

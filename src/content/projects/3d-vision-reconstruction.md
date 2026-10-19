@@ -4,6 +4,7 @@ description: "Improving SfM-free 3D Gaussian Splatting for large-surface renderi
 date: 2026-02-23
 featured: true
 tags: ["Computer Vision", "3D Vision"]
+supervisors: ["Prof. Angela Dai"]
 image: "/images/projects/3d_gaussian_splatting.jpg"
 links:
   #writeup: "https://github.com/oscarbreiner"

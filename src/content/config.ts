@@ -13,6 +13,7 @@ const projects = defineCollection({
     imageBg: z.string().optional(),
     badges: z.array(z.string()).default([]),
     status: z.string().optional(),
+    supervisors: z.array(z.string()).default([]),
     links: z
       .object({
         github: z.string().url().optional(),

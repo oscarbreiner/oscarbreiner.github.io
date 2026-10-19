@@ -4,6 +4,7 @@ description: "Researched uncertainty quantification for graph neural networks un
 date: 2024-08-01
 featured: true
 tags: ["Graph Learning"]
+supervisors: ["Prof. Stephan Günnemann"]
 image: "/images/projects/horizontal_gnn_uq.png"
 imageFit: "contain"
 imageBg: "#fefefe"

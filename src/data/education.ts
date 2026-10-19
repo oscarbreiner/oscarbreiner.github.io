@@ -9,8 +9,8 @@ export type EducationEntry = {
 
 export const education: EducationEntry[] = [
   {
-    degree: 'Master’s Thesis (Research Visit)',
-    university: 'University of Oxford – PIXL Lab',
+    degree: 'Master’s Thesis (Research Visit) · PIXL Lab',
+    university: 'University of Oxford',
     location: 'Oxford, United Kingdom',
     start: 'Jun 2026',
     end: 'Dec 2026',
