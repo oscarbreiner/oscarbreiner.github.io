@@ -4,20 +4,82 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB triplets, consumed by tailwind.config.cjs. */
+:root {
+  --c-bg: 246 247 249;
+  --c-surface: 255 255 255;
+  --c-subtle: 240 242 246;
+  --c-border: 222 225 232;
+  --c-ink: 12 14 20;
+  --c-muted: 82 89 104;
+  --c-accent: 23 33 58;
+  --c-accent-fg: 255 255 255;
+  --c-brand: 37 84 214;
+  --c-gold: 161 98 7;
+  --c-gold-bg: 254 246 225;
+  --c-warn: 185 28 28;
+  --c-warn-bg: 254 242 242;
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: 10 12 16;
+  --c-surface: 18 21 27;
+  --c-subtle: 26 30 38;
+  --c-border: 41 46 58;
+  --c-ink: 236 238 243;
+  --c-muted: 158 166 180;
+  --c-accent: 232 236 244;
+  --c-accent-fg: 14 17 24;
+  --c-brand: 130 162 255;
+  --c-gold: 240 190 90;
+  --c-gold-bg: 48 37 14;
+  --c-warn: 248 113 113;
+  --c-warn-bg: 58 20 24;
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  @apply bg-bg text-ink font-sans antialiased;
+  @apply bg-bg font-sans text-ink antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 .container-page {
-  @apply mx-auto w-full max-w-[94rem] px-4 sm:px-7 lg:px-12;
+  @apply mx-auto w-full max-w-[84rem] px-4 sm:px-7 lg:px-12;
 }
 
 .surface-card {
   @apply rounded-2xl border border-border bg-surface;
+}
+
+.eyebrow {
+  @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand;
+}
+
+.chip {
+  @apply rounded-md border border-border bg-subtle px-2 py-1 font-mono text-[11px] text-muted;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition;
+}
+
+.btn-primary {
+  @apply btn bg-accent text-accent-fg hover:opacity-90;
+}
+
+.btn-secondary {
+  @apply btn border border-border bg-surface text-ink hover:border-ink/40;
 }
 
 .reveal {
@@ -36,5 +98,14 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    animation: none;
   }
 }

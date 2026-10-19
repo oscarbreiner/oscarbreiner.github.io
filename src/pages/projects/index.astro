@@ -6,15 +6,16 @@ import Footer from '../../components/Footer.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import TagFilter from '../../components/TagFilter.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
+import { siteData } from '../../data/site';
 
 const projects = (await getCollection('projects')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const tags = [...new Set(projects.flatMap((project) => project.data.tags))].sort();
 ---
 
-<BaseLayout title="Projects | Portfolio" description="All project posts with tags, demos, and source code links.">
+<BaseLayout title={`Projects | ${siteData.name}`} description="Research and engineering projects in 3D vision, radar perception, and scientific machine learning.">
   <Navbar />
   <main class="container-page section-spacing">
-    <SectionHeader title="All Projects" subtitle="Filter by topic and open source links, demos, and write-ups." />
+    <SectionHeader eyebrow="Research" title="All Projects" subtitle="Filter by research area. Each project links to details, code, and write-ups where available." />
     <TagFilter tags={tags} targetId="all-project-grid" />
     <div id="all-project-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {projects.map((project) => <ProjectCard project={project} />)}

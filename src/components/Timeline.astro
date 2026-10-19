@@ -10,70 +10,47 @@ type TimelineItem = {
 
 interface Props {
   items: TimelineItem[];
-  variant?: 'experience' | 'education';
 }
 
 const { items } = Astro.props;
-const { variant = 'experience' } = Astro.props as Props;
 ---
 
-<div class="relative space-y-6 before:absolute before:bottom-0 before:left-[11px] before:top-0 before:w-px before:bg-border">
-  {items.map((item) => (
-    <article class="relative pl-10 reveal">
+<ol class="relative ml-[5px] space-y-5 border-l border-border">
+  {items.map((item, idx) => (
+    <li class="reveal relative pl-6 sm:pl-8">
       <span
-        class={`absolute left-0 top-1 h-[22px] w-[22px] rounded-full border bg-surface ${
-          variant === 'experience' ? 'border-blue-500/70' : 'border-violet-500/70'
-        }`}
+        class:list={[
+          'absolute -left-[6px] top-7 h-[11px] w-[11px] rounded-full ring-4 ring-bg',
+          idx === 0 ? 'bg-brand' : 'border-2 border-border bg-surface'
+        ]}
         aria-hidden="true"
       ></span>
-      <div
-        class={`surface-card p-5 sm:p-6 ${
-          variant === 'experience'
-            ? 'bg-[linear-gradient(135deg,rgba(59,130,246,0.07)_0%,rgba(255,255,255,1)_30%)]'
-            : 'bg-[linear-gradient(135deg,rgba(139,92,246,0.07)_0%,rgba(255,255,255,1)_30%)]'
-        }`}
-      >
-        <header class="flex flex-wrap items-center justify-between gap-2">
-          <h3 class="font-display text-2xl leading-tight text-ink">{item.title}</h3>
-          <p
-            class={`font-mono text-[11px] uppercase tracking-wide ${
-              variant === 'experience' ? 'text-blue-700' : 'text-violet-700'
-            }`}
-          >
-            {item.meta}
-          </p>
+      <article class="surface-card p-5 transition hover:border-ink/20 sm:p-6">
+        <header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 class="font-display text-xl font-semibold tracking-tight text-ink">{item.title}</h3>
+          <p class="font-mono text-[11px] uppercase tracking-wide text-brand">{item.meta}</p>
         </header>
-        {variant === 'education' ? (
-          <>
-            <p class="mt-2 text-base font-semibold text-ink/80">{item.subtitle}</p>
-            {item.location && <p class="mt-0.5 text-sm text-muted">{item.location}</p>}
-          </>
-        ) : (
-          <p class="mt-2 text-sm text-muted">{item.subtitle}</p>
+        <p class="mt-1.5 text-[15px] font-semibold text-ink/80">{item.subtitle}</p>
+        {item.location && <p class="mt-0.5 text-sm text-muted">{item.location}</p>}
+
+        {item.bullets.length > 0 && (
+          <ul class="mt-4 space-y-1.5 text-sm leading-relaxed text-muted">
+            {item.bullets.map((bullet) => (
+              <li class="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-muted/60">
+                {bullet}
+              </li>
+            ))}
+          </ul>
         )}
 
-        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted">
-          {item.bullets.map((bullet) => (
-            <li>{bullet}</li>
-          ))}
-        </ul>
-
         {item.chips && item.chips.length > 0 && (
-          <div class="mt-4 flex flex-wrap gap-2">
+          <div class="mt-4 flex flex-wrap gap-1.5">
             {item.chips.map((chip) => (
-              <span
-                class={`rounded-md border px-2 py-1 font-mono text-[11px] ${
-                  variant === 'experience'
-                    ? 'border-blue-200 bg-blue-50 text-blue-700'
-                    : 'border-violet-200 bg-violet-50 text-violet-700'
-                }`}
-              >
-                {chip}
-              </span>
+              <span class="chip">{chip}</span>
             ))}
           </div>
         )}
-      </div>
-    </article>
+      </article>
+    </li>
   ))}
-</div>
+</ol>

@@ -1,60 +1,88 @@
 ---
 import { siteData } from '../data/site';
 import { withBase } from '../utils/withBase';
+import Icon from './Icon.astro';
 
 const profileSrc = `${import.meta.env.BASE_URL}images/profile.jpeg`;
 const cvUrl = `${import.meta.env.BASE_URL}${siteData.cvPath}`;
 ---
 
-<section id="home" class="section-spacing pb-8 sm:pb-12">
-  <div class="surface-card reveal p-7 shadow-soft sm:p-10">
-    <div class="grid gap-8 lg:grid-cols-[1fr_minmax(320px,520px)] lg:items-start">
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.16em] text-muted">Research • Engineering • Machine Learning</p>
-        <h1 class="mt-3 max-w-5xl font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{siteData.name}</h1>
-        <p class="mt-2 text-base font-medium text-ink/90">{siteData.title}</p>
-        <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted sm:text-lg">{siteData.tagline}</p>
+<section id="home" class="pb-10 pt-10 sm:pb-14 sm:pt-16">
+  <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,500px)] lg:items-center lg:gap-14">
+    <div class="reveal">
+      <p class="eyebrow">{siteData.role}</p>
+      <h1 class="mt-4 font-display text-5xl font-semibold tracking-tight text-ink sm:text-6xl">{siteData.name}</h1>
 
-        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
-          <span>{siteData.location}</span>
-          {siteData.email && <a href={`mailto:${siteData.email}`} class="hover:text-ink">{siteData.email}</a>}
-          <a href={siteData.linkedinUrl} target="_blank" rel="noreferrer" class="hover:text-ink">LinkedIn</a>
-          <a href={siteData.githubUrl} target="_blank" rel="noreferrer" class="hover:text-ink">GitHub</a>
-        </div>
+      <ul class="mt-5 space-y-1.5 text-sm sm:text-base">
+        {siteData.affiliations.map((item) => (
+          <li class="flex flex-wrap gap-x-2">
+            <span class="font-semibold text-ink">{item.title}</span>
+            <span class="text-muted">· {item.org}</span>
+          </li>
+        ))}
+      </ul>
 
-        <div class="mt-6 flex flex-wrap gap-2">
-          {siteData.heroChips.map((chip) => (
-            <span class="rounded-md border border-border bg-bg px-3 py-1.5 font-mono text-xs text-muted">{chip}</span>
-          ))}
-        </div>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{siteData.bio}</p>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a
-            href={withBase('/projects')}
-            class="rounded-lg border border-accent bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#121a2d]"
-          >
-            Explore Research
-          </a>
-          {siteData.showCv && (
-            <a
-              href={cvUrl}
-              download
-              class="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink"
-            >
-              Download CV
-            </a>
-          )}
-        </div>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {siteData.heroChips.map((chip) => (
+          <span class="chip px-2.5 py-1">{chip}</span>
+        ))}
       </div>
 
-      <div class="w-full overflow-hidden rounded-xl border border-border bg-bg lg:justify-self-end">
-        <img
-          src={profileSrc}
-          alt={`${siteData.name} profile`}
-          class="w-full h-auto object-contain"
-          loading="lazy"
-        />
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href={withBase('/#projects')} class="btn-primary">
+          Explore Research
+          <Icon name="arrow-right" />
+        </a>
+        {siteData.showCv && (
+          <a href={cvUrl} download class="btn-secondary">
+            Download CV
+          </a>
+        )}
+        <a href={siteData.githubUrl} target="_blank" rel="noreferrer" class="btn-secondary">
+          <Icon name="github" />
+          GitHub
+        </a>
+        <a href={siteData.linkedinUrl} target="_blank" rel="noreferrer" class="btn-secondary">
+          <Icon name="linkedin" />
+          LinkedIn
+        </a>
+        {siteData.email && (
+          <a href={`mailto:${siteData.email}`} class="btn-secondary">
+            <Icon name="mail" />
+            Email
+          </a>
+        )}
       </div>
     </div>
+
+    <figure class="reveal relative overflow-hidden rounded-2xl border border-border bg-subtle shadow-soft lg:justify-self-end">
+      <img src={profileSrc} alt={`${siteData.name} with the A2RL 2025 World Champion team`} class="h-auto w-full object-cover" />
+      <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-3 pt-10 text-xs font-medium text-white">
+        {siteData.heroImageCaption}
+      </figcaption>
+    </figure>
   </div>
+
+  <dl class="reveal mt-10 grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3 sm:gap-px">
+    {siteData.heroHighlights.map((item) => {
+      const Tag = item.href ? 'a' : 'div';
+      return (
+        <Tag
+          href={item.href ? withBase(item.href) : undefined}
+          class:list={['group flex items-center gap-4 bg-surface px-5 py-4 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-border sm:[&:not(:first-child)]:border-t-0', item.href && 'transition hover:bg-subtle']}
+        >
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gold-bg text-gold">
+            <Icon name="trophy" class="h-[18px] w-[18px]" />
+          </span>
+          <div class="min-w-0">
+            <dt class="font-mono text-[11px] uppercase tracking-wide text-muted">{item.label}</dt>
+            <dd class="text-sm font-semibold text-ink">{item.value}</dd>
+          </div>
+          {item.href && <Icon name="arrow-right" class="ml-auto h-4 w-4 text-muted transition group-hover:translate-x-0.5 group-hover:text-ink" />}
+        </Tag>
+      );
+    })}
+  </dl>
 </section>
