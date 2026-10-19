@@ -35,13 +35,15 @@ const cvUrl = `${import.meta.env.BASE_URL}${siteData.cvPath}`;
           >
             Explore Research
           </a>
-          <a
-            href={cvUrl}
-            download
-            class="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink"
-          >
-            Download CV
-          </a>
+          {siteData.showCv && (
+            <a
+              href={cvUrl}
+              download
+              class="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink"
+            >
+              Download CV
+            </a>
+          )}
         </div>
       </div>
 

@@ -3,8 +3,10 @@ title: "GNN Uncertainty Estimation"
 description: "Researched uncertainty quantification for graph neural networks under distribution shift."
 date: 2024-08-01
 featured: true
-tags: ["Graph Neural Networks", "Uncertainty", "Deep Learning"]
-image: "/images/projects/gnn.png"
+tags: ["Graph Learning"]
+image: "/images/projects/horizontal_gnn_uq.png"
+imageFit: "contain"
+imageBg: "#fefefe"
 links:
   github: "https://github.com/oscarbreiner/Uncertainty-Quantification-on-GNN-using-Stochastic-Centering.git"
 ---

@@ -9,6 +9,10 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     image: z.string(),
+    imageFit: z.enum(['cover', 'contain']).default('cover'),
+    imageBg: z.string().optional(),
+    badges: z.array(z.string()).default([]),
+    status: z.string().optional(),
     links: z
       .object({
         github: z.string().url().optional(),

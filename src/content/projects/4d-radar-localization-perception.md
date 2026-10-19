@@ -3,8 +3,9 @@ title: "4D Radar Localization & Perception"
 description: "Part of the A2RL 2025 World Champion team. Built a real-time 4D radar perception and localization pipeline with novel Doppler de-aliasing at 250+ km/h."
 date: 2026-03-15
 featured: true
-tags: ["Radar", "Localization", "Perception", "Autonomous Racing"]
+tags: ["Radar", "Robotics"]
 image: "/images/projects/tum_racing.JPG"
+badges: ["2025 A2RL World Champion", "F1 Circuit Abu Dhabi"]
 links:
   #github: "https://github.com/oscarbreiner"
   #writeup: "https://github.com/oscarbreiner"

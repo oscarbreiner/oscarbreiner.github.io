@@ -3,7 +3,7 @@ title: "Multimodal Model Merging"
 description: "Multimodal model merging via geometric alignment, weight preconditioning, and truncation."
 date: 2025-12-10
 featured: true
-tags: ["Model Merging", "Multimodal", "Deep Learning", "Vision"]
+tags: ["Multimodal Learning", "Computer Vision"]
 image: "/images/projects/model_merging.jpg"
 links:
   # github: "https://github.com/oscarbreiner"

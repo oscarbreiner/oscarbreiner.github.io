@@ -22,7 +22,7 @@ interface Props {
 
 const { project } = Astro.props as Props;
 const { Content } = await render(project);
-const { title, description, date, tags, image } = project.data;
+const { title, description, date, tags, image, imageFit, imageBg, badges, status } = project.data;
 const links = project.data.links ?? {};
 ---
 
@@ -30,10 +30,26 @@ const links = project.data.links ?? {};
   <Navbar />
   <main class="container-page section-spacing">
     <a href={withBase('/projects')} class="text-sm font-semibold text-accent hover:underline">← Back to Projects</a>
-    <SectionHeader title={title} subtitle={description} />
+    <SectionHeader title={title} subtitle={description}>
+      {(badges.length > 0 || status) && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {badges.map((badge) => (
+            <span class="rounded-md bg-accent px-3 py-1.5 text-sm font-semibold text-white">{badge}</span>
+          ))}
+          {status && (
+            <span class="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-700">{status}</span>
+          )}
+        </div>
+      )}
+    </SectionHeader>
 
     <article class="surface-card overflow-hidden">
-      <img src={withBase(image)} alt={title} class="h-56 w-full border-b border-border object-cover sm:h-80" />
+      <img
+        src={withBase(image)}
+        alt={title}
+        style={imageFit === 'contain' ? `background-color: ${imageBg ?? '#ffffff'}` : undefined}
+        class:list={['w-full border-b border-border', imageFit === 'contain' ? 'h-auto max-h-96 object-contain p-4 sm:max-h-[32rem]' : 'h-56 object-cover sm:h-80']}
+      />
       <div class="p-6 sm:p-8">
         <p class="font-mono text-[11px] uppercase tracking-wide text-muted">{date.getFullYear()}</p>
 

@@ -7,13 +7,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, tags, image, date } = project.data;
+const { title, description, tags, image, imageFit, imageBg, badges, status, date } = project.data;
 const links = project.data.links ?? {};
 const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
 ---
 
 <article
-  class="project-card surface-card group flex h-full cursor-pointer flex-col overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-card"
+  class="project-card surface-card group row-span-5 grid cursor-pointer grid-rows-subgrid gap-0 overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-card"
   data-project-card
   data-project-url={withBase(`/projects/${project.slug}`)}
   data-tags={tagDataset}
@@ -21,34 +21,52 @@ const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
   role="link"
 >
   <div class="relative">
-    <img src={withBase(image)} alt={title} class="h-52 w-full border-b border-border object-cover" loading="lazy" />
+    <img
+      src={withBase(image)}
+      alt={title}
+      style={imageFit === 'contain' ? `background-color: ${imageBg ?? '#ffffff'}` : undefined}
+      class:list={['h-52 w-full border-b border-border', imageFit === 'contain' ? 'object-contain p-2' : 'object-cover']}
+      loading="lazy"
+    />
     <span class="absolute right-3 top-3 rounded-md border border-border bg-surface/95 px-2 py-1 font-mono text-[11px] text-muted">
       {date.getFullYear()}
     </span>
   </div>
 
-  <div class="flex flex-1 flex-col p-5 sm:p-6">
+  {/* Each block below is a row of the parent grid (subgrid), so titles, descriptions, tags, and links line up across a row of cards. */}
+  <div class="px-5 pt-5 sm:px-6 sm:pt-6">
     <h3 class="font-display text-2xl leading-tight text-ink">{title}</h3>
-    <p class="mt-2 text-sm leading-6 text-muted" data-project-description>{description}</p>
+    {(badges.length > 0 || status) && (
+      <div class="mt-3 flex flex-wrap gap-2">
+        {badges.map((badge) => (
+          <span class="rounded-md bg-accent px-2 py-1 text-xs font-semibold text-white">{badge}</span>
+        ))}
+        {status && (
+          <span class="rounded-md border border-red-200 bg-red-50 px-2 py-1 text-xs font-semibold text-red-700">{status}</span>
+        )}
+      </div>
+    )}
+  </div>
 
-    <div class="mt-4 flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <span class="rounded-md border border-border bg-bg px-2 py-1 font-mono text-[11px] text-muted">{tag}</span>
-      ))}
-    </div>
+  <p class="mt-2 px-5 text-sm leading-6 text-muted sm:px-6" data-project-description>{description}</p>
 
-    <div class="mt-auto flex flex-wrap gap-4 pt-6 text-sm">
-      <a href={withBase(`/projects/${project.slug}`)} class="font-semibold text-accent hover:underline">Details</a>
-      {links.github && (
-        <a href={links.github} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Code</a>
-      )}
-      {links.demo && (
-        <a href={links.demo} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Demo</a>
-      )}
-      {links.writeup && (
-        <a href={links.writeup} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Write-up</a>
-      )}
-    </div>
+  <div class="mt-4 flex flex-wrap content-start gap-2 px-5 sm:px-6">
+    {tags.map((tag) => (
+      <span class="rounded-md border border-border bg-bg px-2 py-1 font-mono text-[11px] text-muted">{tag}</span>
+    ))}
+  </div>
+
+  <div class="flex flex-wrap items-end gap-4 px-5 pb-5 pt-6 text-sm sm:px-6 sm:pb-6">
+    <a href={withBase(`/projects/${project.slug}`)} class="font-semibold text-accent hover:underline">Details</a>
+    {links.github && (
+      <a href={links.github} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Code</a>
+    )}
+    {links.demo && (
+      <a href={links.demo} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Demo</a>
+    )}
+    {links.writeup && (
+      <a href={links.writeup} target="_blank" rel="noreferrer" class="font-semibold text-accent hover:underline">Write-up</a>
+    )}
   </div>
 </article>
 

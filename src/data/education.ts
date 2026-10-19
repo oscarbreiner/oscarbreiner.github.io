@@ -9,6 +9,17 @@ export type EducationEntry = {
 
 export const education: EducationEntry[] = [
   {
+    degree: 'Master’s Thesis (Research Visit)',
+    university: 'University of Oxford – PIXL Lab',
+    location: 'Oxford, United Kingdom',
+    start: 'Jun 2026',
+    end: 'Dec 2026',
+    highlights: [
+      '3D Vision research on image-to-3D generation under Prof. Ronald Clark.',
+      'Joint collaboration with the 3D AI Lab of Prof. Angela Dai (TUM).'
+    ]
+  },
+  {
     degree: 'M.Sc. Informatics',
     university: 'Technical University of Munich (TUM)',
     location: 'Munich, Germany',

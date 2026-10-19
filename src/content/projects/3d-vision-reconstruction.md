@@ -3,7 +3,7 @@ title: "3D Vision Reconstruction"
 description: "Improving SfM-free 3D Gaussian Splatting for large-surface rendering with blended visibility and error signals."
 date: 2026-02-23
 featured: true
-tags: ["Vision", "Reconstruction", "Deep Learning"]
+tags: ["Computer Vision", "3D Vision"]
 image: "/images/projects/3d_gaussian_splatting.jpg"
 links:
   #writeup: "https://github.com/oscarbreiner"

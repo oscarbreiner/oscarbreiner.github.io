@@ -53,37 +53,6 @@ const personalCards = [
       <div id="featured-project-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {featuredProjects.map((project) => <ProjectCard project={project} />)}
       </div>
-      <script>
-        const equalizeProjectCards = (gridId) => {
-          const grid = document.getElementById(gridId);
-          if (!grid) return;
-
-          const descriptions = Array.from(grid.querySelectorAll('[data-project-description]'));
-          const cards = Array.from(grid.querySelectorAll('[data-project-card]'));
-          if (!descriptions.length || !cards.length) return;
-
-          descriptions.forEach((el) => {
-            el.style.minHeight = '0px';
-          });
-          cards.forEach((el) => {
-            el.style.minHeight = '0px';
-          });
-
-          const maxDescriptionHeight = Math.max(...descriptions.map((el) => el.getBoundingClientRect().height));
-          descriptions.forEach((el) => {
-            el.style.minHeight = `${maxDescriptionHeight}px`;
-          });
-
-          const maxCardHeight = Math.max(...cards.map((el) => el.getBoundingClientRect().height));
-          cards.forEach((el) => {
-            el.style.minHeight = `${maxCardHeight}px`;
-          });
-        };
-
-        const runEqualize = () => equalizeProjectCards('featured-project-grid');
-        runEqualize();
-        window.addEventListener('resize', runEqualize);
-      </script>
     </section>
 
     <section id="stack" class="section-spacing">

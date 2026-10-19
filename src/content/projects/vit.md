@@ -3,8 +3,10 @@ title: "Review on Vision Transformers"
 description: "Surveyed the evolution of Vision Transformers and key design strategies bridging CNNs and attention-based vision models."
 date: 2024-08-01
 featured: true
-tags: ["Vision", "Deep Learning", "Survey"]
+tags: ["Computer Vision"]
 image: "/images/projects/vit.webp"
+imageFit: "contain"
+imageBg: "#fdfdfd"
 links:
   github: "https://github.com/oscarbreiner/Review-on-Vision-Transformers.git"
 ---

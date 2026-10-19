@@ -7,6 +7,8 @@ export const siteData = {
   githubUrl: 'https://github.com/oscarbreiner',
   linkedinUrl: 'https://linkedin.com/in/oscarbreiner',
   cvPath: 'cv.pdf',
+  // Set to true to show the "Download CV" buttons again.
+  showCv: false,
   heroChips: ['Machine Learning', 'Perception', 'Embodied AI', 'AI in Vision, Physics, and Robotics'],
 };
 
