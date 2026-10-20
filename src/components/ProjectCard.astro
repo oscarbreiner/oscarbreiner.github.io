@@ -49,10 +49,12 @@ const tagDataset = tags.map((tag) => tag.toLowerCase()).join('|');
         )}
       </div>
     )}
-    {supervisors.length > 0 && <p class="mt-2 text-xs text-muted">{supervisors.length > 1 ? 'Supervisors' : 'Supervisor'}: {supervisors.join(', ')}</p>}
   </div>
 
-  <p class="mt-2 px-5 text-sm leading-6 text-muted sm:px-6" data-project-description>{description}</p>
+  <div class="mt-2 px-5 sm:px-6">
+    <p class="text-sm leading-6 text-muted" data-project-description>{description}</p>
+    {supervisors.length > 0 && <p class="mt-2 text-xs text-muted">{supervisors.length > 1 ? 'Supervisors' : 'Supervisor'}: {supervisors.join(', ')}</p>}
+  </div>
 
   <div class="mt-4 flex flex-wrap content-start gap-2 px-5 sm:px-6">
     {tags.map((tag) => (
